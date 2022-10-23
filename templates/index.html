@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
+
+   <header class="heading">
+     <h1>Simultaneous Estimation of Drugs by UV Spectroscopy</h1>
+   </header>
+   <body>
+    <div class="bod">
+     <h2>Description:</h2>
+     <p>This app assists in calculation of simultaneous equation by UV Spectroscopy</p>
+    </div>
+     <form method="POST">
+      {{ template_form.hidden_tag() }}
+      <table>
+        <tr>
+          <th>Component</th>
+          <th>Absorbance (λ1)</th>
+          <th>Absorbance (λ2)</th>
+       </tr>
+       <tr>
+          <td>Drug_1</td>
+          <td>{{ template_form.d1l1() }} (x1)</td>
+          <td>{{ template_form.d1l2() }} (x2)</td>
+      </tr>
+      <tr>
+        <td>Drug_2</td>
+        <td>{{ template_form.d2l1() }} (y1)</td>
+        <td>{{ template_form.d2l2() }} (y2)</td>
+      </tr>
+      <tr>
+        <td>Unknown</td>
+        <td>{{ template_form.ul1() }} (A1)</td>
+        <td>{{ template_form.ul2() }} (A2)</td>
+      </tr>
+      </table>
+
+      <p>
+        {{ template_form.conc.label }}
+        {{ template_form.conc() }}
+      </p>
+
+      <p>{{ template_form.submit() }}</p>
+     </form>
+     <h2>Result:</h2>
+     <p>Concentration of Drug_1: {{ '%0.2f'|format(template_list1|float) }} (µg/ml)</p>
+     <p>Concentration of Drug_2: {{ '%0.2f'|format(template_list2|float) }} (µg/ml)</p>
+
+   </body>
+
+{% endblock %}
